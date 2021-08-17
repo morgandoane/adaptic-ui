@@ -8,11 +8,13 @@ import { useAuth0 } from '@auth0/auth0-react';
 import { env } from 'config';
 import React, { ReactElement } from 'react';
 import { setContext } from '@apollo/link-context';
+import Loading from 'scenes/Loading';
+import AppError from 'scenes/AppError';
 
 const AuthorizedApolloProvider = (props: {
-    children: ReactElement | ReactElement[];
+    children: ReactElement;
 }): ReactElement => {
-    const { getAccessTokenSilently } = useAuth0();
+    const { getAccessTokenSilently, isLoading, error } = useAuth0();
 
     const httpLink = createHttpLink({
         uri: env.REACT_APP_API_URI,
@@ -32,6 +34,13 @@ const AuthorizedApolloProvider = (props: {
         cache: new InMemoryCache(),
         connectToDevTools: true,
     });
+
+    if (isLoading) {
+        return <Loading message={'Apollo initializing'} />;
+    }
+    if (error) {
+        return <AppError message={error.message} />;
+    }
 
     return (
         <ApolloProvider client={apolloClient}>{props.children}</ApolloProvider>

@@ -4,6 +4,7 @@ import { createTheme, ThemeProvider as Provider } from '@material-ui/core';
 const getTheme = (darkMode = true) =>
     createTheme({
         palette: {
+            type: darkMode ? 'dark' : 'light',
             primary: {
                 main: '#3366ff',
             },
@@ -17,7 +18,7 @@ const getTheme = (darkMode = true) =>
     });
 
 export const ThemeProvider = (props: {
-    children?: ReactElement | ReactElement[];
+    children?: ReactElement;
 }): ReactElement => <Provider theme={getTheme()}>{props.children}</Provider>;
 
 export default ThemeProvider;

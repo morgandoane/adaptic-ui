@@ -1,18 +1,21 @@
 import React, { ReactElement } from 'react';
 import AuthProvider from 'providers/AuthProvider';
 import AuthorizedApolloProvider from 'providers/AuthorizedApolloProvider';
-import { AppRouter } from 'providers/AppRouter';
+import { AppRouter } from 'AppRouter';
 import ThemeProvider from 'providers/Theme';
+import { BrowserRouter } from 'react-router-dom';
 
 const App = (): ReactElement => {
     return (
-        <AuthProvider>
-            <AuthorizedApolloProvider>
-                <ThemeProvider>
-                    <AppRouter />
-                </ThemeProvider>
-            </AuthorizedApolloProvider>
-        </AuthProvider>
+        <ThemeProvider>
+            <BrowserRouter>
+                <AuthProvider>
+                    <AuthorizedApolloProvider>
+                        <AppRouter />
+                    </AuthorizedApolloProvider>
+                </AuthProvider>
+            </BrowserRouter>
+        </ThemeProvider>
     );
 };
 

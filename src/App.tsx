@@ -1,23 +1,19 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
+import AuthProvider from 'providers/AuthProvider';
+import AuthorizedApolloProvider from 'providers/AuthorizedApolloProvider';
+import { AppRouter } from 'providers/AppRouter';
+import ThemeProvider from 'providers/Theme';
 
-function App() {
+const App = (): ReactElement => {
     return (
-        <div className="App">
-            <header className="App-header">
-                <p>
-                    Edit <code>src/App.tsx</code> and save to reload.
-                </p>
-                <a
-                    className="App-link"
-                    href="https://reactjs.org"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Learn React
-                </a>
-            </header>
-        </div>
+        <AuthProvider>
+            <AuthorizedApolloProvider>
+                <ThemeProvider>
+                    <AppRouter />
+                </ThemeProvider>
+            </AuthorizedApolloProvider>
+        </AuthProvider>
     );
-}
+};
 
 export default App;

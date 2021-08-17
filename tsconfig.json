@@ -23,9 +23,9 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react"
+    "jsx": "react-jsx"
   },
   "include": [
-    "src/**/*" // *** The files TypeScript should type check ***
-  ],
+    "src/**/*"
+  ]
 }

@@ -3,6 +3,7 @@ import {
     Avatar,
     Button,
     ButtonBase,
+    LinearProgress,
     makeStyles,
     Popover,
     Typography,
@@ -33,15 +34,19 @@ const useStyles = makeStyles((theme) => ({
     },
     body: {
         flex: 1,
+        position: 'relative',
+        color: theme.palette.text.primary,
     },
 }));
 
 const AppNav = (props: {
     children?: ReactElement | ReactElement[];
+    loading?: boolean;
 }): ReactElement => {
     const classes = useStyles();
     const theme = useTheme();
     const { user } = useAuth0();
+    const { loading = false } = props;
 
     const [anchorEl, setAnchorEl] = React.useState<
         null | (EventTarget & HTMLButtonElement)
@@ -92,7 +97,21 @@ const AppNav = (props: {
                     )}
                 </div>
             </div>
-            <div className={classes.body}>{props.children}</div>
+            <div className={classes.body}>
+                {loading && (
+                    <div
+                        style={{
+                            position: 'absolute',
+                            top: 0,
+                            left: 0,
+                            right: 0,
+                        }}
+                    >
+                        <LinearProgress />
+                    </div>
+                )}
+                {props.children}
+            </div>
         </div>
     );
 };

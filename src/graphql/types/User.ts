@@ -1,0 +1,22 @@
+export interface User {
+    user_id: string | null;
+    name: string | null;
+    given_name: string | null;
+    family_name: string | null;
+    middle_name: string | null;
+    nickname: string | null;
+    preferred_username: string | null;
+    profile: string | null;
+    picture: string | null;
+    website: string | null;
+    email_verified: boolean | null;
+    email: string | null;
+    gender: string | null;
+    birthdate: string | null;
+    zoneinfo: string | null;
+    locale: string | null;
+    phone_number: string | null;
+    phone_number_verified: boolean | null;
+    address: string | null;
+    updated_at: string | null;
+}

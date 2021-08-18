@@ -1,8 +1,6 @@
 import { useQuery } from '@apollo/client';
 import { useAuth0 } from '@auth0/auth0-react';
 import { Fab, makeStyles, Typography } from '@material-ui/core';
-import { ProjectsQuery } from 'graphql/projects/query';
-import { ProjectsRes } from 'graphql/projects/res';
 import React, { ReactElement } from 'react';
 
 const useStyles = makeStyles((theme) => ({
@@ -24,8 +22,6 @@ const Login = (): ReactElement => {
 
     const { loginWithPopup } = useAuth0();
 
-    const { data, error, loading } = useQuery<ProjectsRes>(ProjectsQuery);
-
     return (
         <div className={classes.root}>
             <div>
@@ -34,12 +30,6 @@ const Login = (): ReactElement => {
                 </Typography>
                 <Typography color="textSecondary" variant="caption">
                     Collaborative design automation
-                </Typography>
-                <Typography color="textSecondary" variant="caption">
-                    {JSON.stringify(data)}
-                </Typography>
-                <Typography color="textSecondary" variant="caption">
-                    {JSON.stringify(error)}
                 </Typography>
                 <Typography color="textPrimary" variant="body1">
                     Adaptic allows engineering teams to seamlessly coordinate
